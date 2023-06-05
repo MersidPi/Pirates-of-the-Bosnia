@@ -6,20 +6,26 @@
     intro, select controls, optional dark/light theme, arrange ships, battle, end screen, play again
 '''
 
-from intro import intro
-from connection import connect
-from controls import selectControls
-from theme import selectTheme
-from arrange import arrangeShips
-from battle import battle
-from endScreen import endScreen
+from sapica.intro import showIntro
+from sapica.connection import connect
+from sapica.controls import selectControls
+#from theme import selectTheme
+from sapica.arrange import arrangeShips
+from sapica.battle import battle
+from sapica.endScreen import endScreen
+from time import sleep
 
-#while playAgain == True:
-intro()
-connect()
-selectControls()
-selectTheme()
-arrangeShips()
-battle()
-endScreen()
+
+playAgain = True
+while playAgain == True:
+    showIntro()
+    connect()
+    selectedControl = selectControls()
+    print("Selected control: ", str(selectedControl))
+    #selectTheme() # myb implement it the same way as selCtrl
+    arrangeShips()
+    thisPlayerVictory = battle()
+    playAgain = endScreen(thisPlayerVictory) 
+    print("playAgain is: " + str(playAgain))
+print("ENDOFGAME")
 
