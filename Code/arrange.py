@@ -17,7 +17,75 @@ def arrangeShips():
     it also needs function for key press (or joystick move, or key press on phone) reading
     and moving ship on screen according to that
     '''
-    
+
+    #Function that creates a matrix and allows the user to place his ships:
+    #The function iterates through all the ships to be placed, largest to smallest
+    #The user first chooses the orientation of the ship //using one of two buttons//
+    #The user then chooses the coordinates to attempt to place the ship //using up/down left/right and confirm//
+    #The function then determines if the given ship can fit within the matrix if placed at these coordinates
+    #If yes fills matrix with 1's at proper locations
+    #If not restarts input for this particular ship size
+    ###!still needs input and display integration!###
+    def place_ships():
+        # We first create an empty 10x10 matrix
+        matrix = [[0] * 10 for _ in range(10)]
+
+        # We then define the sizes of the ships
+        ship_sizes = [4, 3, 3, 2]
+
+        # We Iterate through each ship size
+        for ship_size in ship_sizes:
+
+            while True:
+                display.print("Placing a ship of size:", ship_size)
+                # Prompt the user to choose the orientation and initial coordinates
+                display.print("Choose the orientation (vertical or horizontal): ")
+                ###!!!Add input here ###
+                #example: if(t0.value): orientation = h elif(t1.value): orientation = v
+
+                #Temporary orientation for development without input:
+                orientation = 'h'
+
+                display.print("Choose the starting coordinates (row, column): ")
+                ###!!!Add input here ###
+                #The player moves a blinking dot to the place they want to place their ship:
+                #For Horizontal the ship is placed left-right in the selected row starting at the selected collumn
+                #For Vertical the ship is placed top-down in the selected collumn starting at the selected row
+
+                #Temporary row and col for development without input:
+                row = 1
+                col = 1
+
+
+                # Check if the coordinates are valid and the ship can be placed there
+                if 0 <= row < 10 and 0 <= col < 10 and matrix[row][col] == 0:
+                    if orientation == 'h':
+                        # Check if the ship can be placed horizontally
+                        if col + ship_size < 10 and all(matrix[row][col + i] == 0 for i in range(ship_size)):
+                            # Valid position, place the ship horizontally
+                            for i in range(ship_size):
+                                matrix[row][col + i] = 1
+                            break
+                        else:
+                            display.print("Invalid position or ship overlap. Try again.")
+                    elif orientation == 'v':
+                        # Check if the ship can be placed vertically
+                        if row + ship_size < 10 and all(matrix[row + i][col] == 0 for i in range(ship_size)):
+                            # Valid position, place the ship vertically
+                            for i in range(ship_size):
+                                matrix[row + i][col] = 1
+                            break
+                        else:
+                            display.print("Invalid position or ship overlap. Try again.")
+                    else:
+                        display.print("Orientation can only be horizontal or vertical")
+                else:
+                    display.print("Invalid position. Try again.")
+
+        # Return the populated matrix
+        return matrix
+
+
     '''
     start timer 
     show display with ship and rotation that is possible
