@@ -1,7 +1,7 @@
 # ETF-US-Project
 Pirates of the Bosnia - Battleships game and embedded systems project on Raspberry Pi Pico
 
-Youtube video: *link will be added*
+Youtube video: https://youtu.be/cbbmE3Xp8RQ
 
 How to run?
 To run project, you need 2 RPi Picos with TFT displays and one of the controls, upload battleships folder from CodeForPicoA to the first Pico, and upload battleships folder from CodeForPicoB to the second Pico. 
